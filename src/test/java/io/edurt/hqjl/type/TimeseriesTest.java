@@ -19,6 +19,8 @@ package io.edurt.hqjl.type;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.edurt.hqjl.aggregator.AggregatorFactory;
+import io.edurt.hqjl.aggregator.AggregatorLongSumFactory;
 import io.edurt.hqjl.base.Granularity;
 import io.edurt.hqjl.base.QueryTest;
 import org.junit.Before;
@@ -58,6 +60,22 @@ public class TimeseriesTest {
                 null,
                 new Granularity(),
                 null,
+                null,
+                null
+        );
+        QueryTest.build(timeseries);
+        System.out.println(mapper.writeValueAsString(timeseries));
+    }
+
+    @Test
+    public void testAggregator() throws JsonProcessingException {
+        AggregatorFactory longSumFactory = new AggregatorLongSumFactory("count-cj_home_tab_visit", "count");
+        timeseries = new Timeseries(
+                "2R4NNDHSGD5R685GSSGN6GH66229F82N",
+                Arrays.asList("2020-01-01T00:00:00.000+08:00", "2020-02-01T00:00:00.000+08:00"),
+                null,
+                new Granularity(),
+                Arrays.asList(longSumFactory),
                 null,
                 null
         );

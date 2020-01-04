@@ -56,13 +56,13 @@ public class Timeseries extends Query {
                       List<String> intervals,
                       Filter filter,
                       Granularity granularity,
-                      List<AggregatorFactory> aggregatorSpecs,
-                      List<PostAggregatorFactory> postAggregatorSpecs,
+                      List<AggregatorFactory> aggregator,
+                      List<PostAggregatorFactory> postAggregator,
                       Map<String, Object> context) {
         this.filter = filter;
         this.granularity = granularity;
-        this.aggregators = aggregatorSpecs;
-        this.postAggregators = postAggregatorSpecs;
+        this.aggregators = aggregator;
+        this.postAggregators = postAggregator;
         this.dataSource = dataSource;
         this.intervals = intervals;
         this.context = context;
