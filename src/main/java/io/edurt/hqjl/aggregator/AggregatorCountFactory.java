@@ -1,4 +1,4 @@
-package io.edurt.hqjl.aggregator; /**
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,26 +15,31 @@ package io.edurt.hqjl.aggregator; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package io.edurt.hqjl.aggregator;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
- * <p> AggregatorFactory </p>
- * <p> Description : AggregatorFactory </p>
+ * <p> AggregatorCountFactory </p>
+ * <p> Description : AggregatorCountFactory </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-04 18:29 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2020-01-04 19:03 </p>
+ * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
-@JsonSubTypes(value = {
-        @JsonSubTypes.Type(name = "longSum", value = AggregatorLongSumFactory.class),
-        @JsonSubTypes.Type(name = "longMax", value = AggregatorLongMaxFactory.class),
-        @JsonSubTypes.Type(name = "longMin", value = AggregatorLongMinFactory.class)
-})
-public interface AggregatorFactory {
+@ToString
+public class AggregatorCountFactory implements AggregatorFactory {
 
-    String getName();
+    @Getter
+    @JsonProperty(value = "name")
+    private final String name;
+
+    @JsonCreator
+    public AggregatorCountFactory(@JsonProperty("name") String name) {
+        this.name = name;
+    }
 
 }
