@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.edurt</groupId>
-    <artifactId>incubator-druid-json-hqjl</artifactId>
+    <artifactId>incubator-hqjl</artifactId>
     <packaging>pom</packaging>
     <version>0.1.0-incubator</version>
     <name>Apache Druid Query QL For JSON</name>
