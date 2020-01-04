@@ -17,9 +17,18 @@
  */
 package io.edurt.hqjl.type;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.edurt.hqjl.aggregator.AggregatorFactory;
+import io.edurt.hqjl.aggregator.post.PostAggregatorFactory;
+import io.edurt.hqjl.base.Granularity;
 import io.edurt.hqjl.base.Query;
+import io.edurt.hqjl.filter.Filter;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p> Timeseries </p>
@@ -31,6 +40,32 @@ import lombok.ToString;
  */
 @Data
 @ToString
+@EqualsAndHashCode(callSuper = true)
 public class Timeseries extends Query {
+
+    @JsonProperty(value = "aggregations")
+    private List<AggregatorFactory> aggregators; // 聚集体
+
+    @JsonProperty(value = "postAggregations")
+    private List<PostAggregatorFactory> postAggregators; // 后续聚集体
+
+    public Timeseries() {
+    }
+
+    public Timeseries(String dataSource,
+                      List<String> intervals,
+                      Filter filter,
+                      Granularity granularity,
+                      List<AggregatorFactory> aggregatorSpecs,
+                      List<PostAggregatorFactory> postAggregatorSpecs,
+                      Map<String, Object> context) {
+        this.filter = filter;
+        this.granularity = granularity;
+        this.aggregators = aggregatorSpecs;
+        this.postAggregators = postAggregatorSpecs;
+        this.dataSource = dataSource;
+        this.intervals = intervals;
+        this.context = context;
+    }
 
 }

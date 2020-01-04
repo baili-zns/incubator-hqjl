@@ -19,9 +19,12 @@ package io.edurt.hqjl.type;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.edurt.hqjl.base.Granularity;
 import io.edurt.hqjl.base.QueryTest;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 /**
  * <p> TimeseriesTest </p>
@@ -43,6 +46,21 @@ public class TimeseriesTest {
 
     @Test
     public void test() throws JsonProcessingException {
+        QueryTest.build(timeseries);
+        System.out.println(mapper.writeValueAsString(timeseries));
+    }
+
+    @Test
+    public void test1() throws JsonProcessingException {
+        timeseries = new Timeseries(
+                "2R4NNDHSGD5R685GSSGN6GH66229F82N",
+                Arrays.asList("2020-01-01T00:00:00.000+08:00", "2020-02-01T00:00:00.000+08:00"),
+                null,
+                new Granularity(),
+                null,
+                null,
+                null
+        );
         QueryTest.build(timeseries);
         System.out.println(mapper.writeValueAsString(timeseries));
     }

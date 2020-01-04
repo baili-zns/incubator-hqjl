@@ -15,48 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.edurt.hqjl.base;
+package io.edurt.hqjl.filter;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import io.edurt.hqjl.filter.Filter;
-import io.edurt.hqjl.type.Timeseries;
-import lombok.Data;
-import lombok.ToString;
-
-import java.util.List;
-import java.util.Map;
 
 /**
- * <p> QueryType </p>
- * <p> Description : QueryType </p>
+ * <p> Filter </p>
+ * <p> Description : Filter </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-04 17:44 </p>
+ * <p> Create Time : 2020-01-04 18:24 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Data
-@ToString
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "queryType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes(value = {
-        @JsonSubTypes.Type(name = "timeseries", value = Timeseries.class),
 })
-public class Query {
-
-    @JsonProperty(value = "dataSource")
-    protected String dataSource; // 查询数据源
-
-    @JsonProperty(value = "intervals")
-    protected List<String> intervals; // 查询数据区间
-
-    @JsonProperty(value = "context")
-    protected Map<String, Object> context; // 额外配置信息
-
-    @JsonProperty(value = "granularity")
-    protected Granularity granularity; // 查询粒度
-
-    @JsonProperty(value = "filter")
-    protected Filter filter; // 过滤条件
-
+public interface Filter {
 }
