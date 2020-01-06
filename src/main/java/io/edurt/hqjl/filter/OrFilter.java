@@ -17,21 +17,30 @@
  */
 package io.edurt.hqjl.filter;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.ToString;
+
+import java.util.List;
 
 /**
- * <p> Filter </p>
- * <p> Description : Filter </p>
+ * <p> OrFilter </p>
+ * <p> Description : OrFilter </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-04 18:24 </p>
+ * <p> Create Time : 2020-01-06 10:45 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
-@JsonSubTypes(value = {
-        @JsonSubTypes.Type(name = "and", value = AndFilter.class),
-        @JsonSubTypes.Type(name = "or", value = OrFilter.class)
-})
-public interface Filter {
+@ToString
+public class OrFilter implements Filter {
+
+    @Getter
+    private final List<Filter> fields;
+
+    @JsonCreator
+    public OrFilter(@JsonProperty("fields") List<Filter> fields) {
+        this.fields = fields;
+    }
+
 }
