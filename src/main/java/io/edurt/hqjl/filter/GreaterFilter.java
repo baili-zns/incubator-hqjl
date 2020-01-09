@@ -22,26 +22,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
- * <p> OrFilter </p>
- * <p> Description : OrFilter </p>
+ * <p> GreaterFilter </p>
+ * <p> Description : GreaterFilter </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-06 10:45 </p>
+ * <p> Create Time : 2020-01-09 10:20 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @ToString
-public class OrFilter implements Filter {
+public class GreaterFilter implements Filter {
 
     @Getter
-    @JsonProperty(value = "fields")
-    private final List<Filter> fields;
+    @JsonProperty(value = "dimension")
+    private final String dimension;
+
+    @Getter
+    @JsonProperty(value = "lower")
+    private final String lower;
+
+    @Getter
+    @JsonProperty(value = "lowerStrict")
+    private final boolean lowerStrict;
+
+    @Getter
+    @JsonProperty(value = "alphaNumeric")
+    private final boolean alphaNumeric;
 
     @JsonCreator
-    public OrFilter(@JsonProperty("fields") List<Filter> fields) {
-        this.fields = fields;
+    public GreaterFilter(@JsonProperty("dimension") String dimension,
+                         @JsonProperty("lower") String lower,
+                         @JsonProperty("lowerStrict") Boolean lowerStrict,
+                         @JsonProperty("alphaNumeric") Boolean alphaNumeric) {
+        this.dimension = dimension;
+        this.lower = lower;
+        this.lowerStrict = (lowerStrict == null) ? false : lowerStrict;
+        this.alphaNumeric = (alphaNumeric == null) ? false : alphaNumeric;
     }
 
 }
