@@ -31,7 +31,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes(value = {
         @JsonSubTypes.Type(name = "and", value = AndFilter.class),
-        @JsonSubTypes.Type(name = "or", value = OrFilter.class)
+        @JsonSubTypes.Type(name = "or", value = OrFilter.class),
+        @JsonSubTypes.Type(name = "selector", value = SelectorFilter.class),
+        @JsonSubTypes.Type(name = "in", value = InFilter.class),
+        @JsonSubTypes.Type(name = "not", value = NotFilter.class),
+        @JsonSubTypes.Type(name = "regex", value = RegexFilter.class),
+        @JsonSubTypes.Type(name = "gt", value = GreaterFilter.class),
+        @JsonSubTypes.Type(name = "lt", value = LessFilter.class)
 })
 public interface Filter {
 }

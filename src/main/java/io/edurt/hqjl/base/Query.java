@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.edurt.hqjl.filter.Filter;
+import io.edurt.hqjl.type.GroupBy;
 import io.edurt.hqjl.type.Timeseries;
 import lombok.Data;
 import lombok.ToString;
@@ -41,6 +42,7 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "queryType")
 @JsonSubTypes(value = {
         @JsonSubTypes.Type(name = "timeseries", value = Timeseries.class),
+        @JsonSubTypes.Type(name = "groupBy", value = GroupBy.class)
 })
 public class Query {
 
