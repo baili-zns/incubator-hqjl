@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.edurt</groupId>
-    <artifactId>incubator-druid-json-hqjl</artifactId>
+    <artifactId>incubator-hqjl</artifactId>
     <packaging>pom</packaging>
     <version>0.1.0-incubator</version>
     <name>Apache Druid Query QL For JSON</name>
@@ -15,9 +15,33 @@
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
         <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
+        <lombok.version>1.18.8</lombok.version>
+        <jackson.version>2.9.9</jackson.version>
+        <junit.version>4.12</junit.version>
+        <guava.version>28.0-jre</guava.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
