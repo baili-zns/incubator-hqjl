@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.edurt</groupId>
     <artifactId>incubator-hqjl</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <version>0.1.0-incubator</version>
     <name>Apache Druid Query QL For JSON</name>
 
@@ -20,6 +20,19 @@
         <junit.version>4.12</junit.version>
         <guava.version>28.0-jre</guava.version>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>maven-repository-releases</id>
+            <name>maven Releases</name>
+            <url>http://192.168.8.220:8092/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-repository-snapshots</id>
+            <name>maven Snapshots</name>
+            <url>http://192.168.8.220:8092/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 
     <dependencies>
         <dependency>
