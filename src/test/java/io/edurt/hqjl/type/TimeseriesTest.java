@@ -81,6 +81,8 @@ public class TimeseriesTest {
         );
         QueryTest.build(timeseries);
         System.out.println(mapper.writeValueAsString(timeseries));
+        System.out.println(mapper);
+
     }
 
 }

@@ -41,7 +41,7 @@ public class QueryTest {
         query.setDataSource("2R4NNDHSGD5R685GSSGN6GH66229F82N");
         query.setIntervals(new ArrayList<String>() {{
             add("2020-01-01T00:00:00.000+08:00");
-            add("2020-02-01T00:00:00.000+08:00");
+            add("2020-03-01T00:00:00.000+08:00");
         }});
         query.setContext(null);
         Granularity granularity = new Granularity();
