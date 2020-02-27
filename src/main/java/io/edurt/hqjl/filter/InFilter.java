@@ -22,7 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.collect.Iterables;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Singular;
 import lombok.ToString;
 
 import java.util.List;

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.edurt.hqjl.aggregator.AggregatorCountFactory;
 import io.edurt.hqjl.aggregator.AggregatorDoubleSumFactory;
 import io.edurt.hqjl.aggregator.AggregatorLongSumFactory;
+import io.edurt.hqjl.aggregator.post.ArithmeticPostAggregator;
+import io.edurt.hqjl.aggregator.post.FieldAccessorPostAggregator;
 import io.edurt.hqjl.base.granularity.EnumGranularity;
 import io.edurt.hqjl.base.granularity.StringGranularity;
 import io.edurt.hqjl.filter.AndFilter;
@@ -43,6 +45,35 @@ public class GroupByTest {
                         )))
                 .aggregator(new AggregatorLongSumFactory("total_usage", "user_count"))
                 .aggregator(new AggregatorDoubleSumFactory("data_transfer", "data_transfer"))
+                .interval(Interval.parse("2012-01-01T00:00:00.000/2012-01-03T00:00:00.000").toString())
+                .build();
+        System.out.println(mapper.writeValueAsString(groupBy));
+        System.out.println(groupBy);
+    }
+
+    @Test
+    public void testGroupBy2() throws JsonProcessingException {
+        GroupBy groupBy = GroupBy.builder()
+                .dataSource("sample_datasource")
+                .granularity(new StringGranularity(EnumGranularity.year))
+                .dimension("country").dimension("device")
+                .filter(
+                        AndFilter.builder()
+                                .field(new SelectorFilter("carrier", "AT&T"))
+                                .field(
+                                        OrFilter.builder().field(new SelectorFilter("make", "Apple"))
+                                                .field(new SelectorFilter("make", "Samsung")).build()
+                                ).build()
+                )
+                .aggregator(new AggregatorLongSumFactory("total_usage", "user_count"))
+                .aggregator(new AggregatorDoubleSumFactory("data_transfer", "data_transfer"))
+                .postAggregator(
+                        ArithmeticPostAggregator.builder()
+                                .name("avg_usage")
+                                .fn("/")
+                                .field(new FieldAccessorPostAggregator("data_transfer"))
+                                .field(new FieldAccessorPostAggregator("total_usage")).build()
+                )
                 .interval(Interval.parse("2012-01-01T00:00:00.000/2012-01-03T00:00:00.000").toString())
                 .build();
         System.out.println(mapper.writeValueAsString(groupBy));

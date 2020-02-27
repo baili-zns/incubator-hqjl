@@ -19,6 +19,7 @@ package io.edurt.hqjl.aggregator.post;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import io.edurt.hqjl.aggregator.AggregatorLongSumFactory;
 
 /**
  * <p> PostAggregatorFactory </p>
@@ -30,7 +31,17 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes(value = {
+        @JsonSubTypes.Type(name = "arithmetic", value = ArithmeticPostAggregator.class),
+        @JsonSubTypes.Type(name = "constant", value = ConstantPostAggregator.class),
+        @JsonSubTypes.Type(name = "fieldAccess", value = FieldAccessorPostAggregator.class),
+        @JsonSubTypes.Type(name = "finalizingFieldAccess", value = FieldAccessorPostAggregator.class),
+        @JsonSubTypes.Type(name = "doubleGreatest", value = DoubleGreatestPostAggregator.class),
+        @JsonSubTypes.Type(name = "doubleLeast", value = DoubleLeastPostAggregator.class),
+        @JsonSubTypes.Type(name = "longGreatest", value = LongGreatestPostAggregator.class),
+        @JsonSubTypes.Type(name = "longLeast", value = LongLeastPostAggregator.class),
+        @JsonSubTypes.Type(name = "javascript", value = JavaScriptPostAggregator.class),
+        @JsonSubTypes.Type(name = "hyperUniqueCardinality", value = HyperUniquePostAggregator.class),
 })
 public interface PostAggregatorFactory {
-
+    String getName();
 }

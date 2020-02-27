@@ -19,6 +19,7 @@ package io.edurt.hqjl.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -31,6 +32,7 @@ import lombok.ToString;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @ToString
+@Builder
 public class RegexFilter implements Filter {
 
     @Getter

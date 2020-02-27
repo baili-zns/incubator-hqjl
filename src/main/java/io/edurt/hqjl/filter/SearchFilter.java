@@ -19,47 +19,53 @@ package io.edurt.hqjl.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 /**
- * <p> LessFilter </p>
- * <p> Description : LessFilter </p>
+ * <p> SelectorFilter </p>
+ * <p> Description : SelectorFilter </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-09 10:22 </p>
+ * <p> Create Time : 2020-01-09 10:28 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Builder
 @ToString
-public class LessFilter implements Filter {
+@SuperBuilder(toBuilder = true)
+public class SearchFilter implements Filter {
+
+    @ToString
+    @SuperBuilder(toBuilder = true)
+    @JsonTypeInfo(use = JsonTypeInfo.Id.NONE)
+    public static class SearchQuery {
+        @Getter
+        @JsonProperty(value = "type")
+        protected final String type;
+        @Getter
+        @JsonProperty(value = "value")
+        protected final String value;
+
+        public SearchQuery(String type, String value) {
+            this.type = type;
+            this.value = value;
+        }
+    }
 
     @Getter
     @JsonProperty(value = "dimension")
     private final String dimension;
 
     @Getter
-    @JsonProperty(value = "upper")
-    private final String upper;
+    @JsonProperty(value = "query")
+    private final SearchQuery query;
 
-    @Getter
-    @JsonProperty(value = "upperStrict")
-    private final Boolean upperStrict;
-
-    @Getter
-    @JsonProperty(value = "alphaNumeric")
-    private final Boolean alphaNumeric;
 
     @JsonCreator
-    public LessFilter(@JsonProperty("dimension") String dimension,
-                      @JsonProperty("upper") String upper,
-                      @JsonProperty("upperStrict") Boolean upperStrict,
-                      @JsonProperty("alphaNumeric") Boolean alphaNumeric) {
+    public SearchFilter(@JsonProperty(value = "dimension") String dimension, SearchQuery query) {
         this.dimension = dimension;
-        this.upper = upper;
-        this.upperStrict = (upperStrict == null) ? false : upperStrict;
-        this.alphaNumeric = (alphaNumeric == null) ? false : alphaNumeric;
+        this.query = query;
     }
 
 }

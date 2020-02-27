@@ -19,7 +19,9 @@ package io.edurt.hqjl.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Singular;
 import lombok.ToString;
 
 /**
@@ -30,6 +32,7 @@ import lombok.ToString;
  * <p> Create Time : 2020-01-09 10:26 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
+@Builder
 @ToString
 public class NotFilter implements Filter {
 

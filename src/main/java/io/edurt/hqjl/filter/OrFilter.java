@@ -19,7 +19,9 @@ package io.edurt.hqjl.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Singular;
 import lombok.ToString;
 
 import java.util.ArrayList;
@@ -34,9 +36,11 @@ import java.util.List;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @ToString
+@Builder
 public class OrFilter implements Filter {
 
     @Getter
+    @Singular
     @JsonProperty(value = "fields")
     private final List<Filter> fields;
 

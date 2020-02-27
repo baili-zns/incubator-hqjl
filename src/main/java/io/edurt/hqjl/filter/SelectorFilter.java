@@ -19,6 +19,7 @@ package io.edurt.hqjl.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 
 /**
@@ -29,6 +30,7 @@ import lombok.Getter;
  * <p> Create Time : 2020-01-09 10:28 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
+@Builder
 public class SelectorFilter implements Filter {
 
     @Getter

@@ -19,6 +19,7 @@ package io.edurt.hqjl.filter;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.sun.jndi.toolkit.dir.SearchFilter;
 
 /**
  * <p> Filter </p>
@@ -37,7 +38,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(name = "not", value = NotFilter.class),
         @JsonSubTypes.Type(name = "regex", value = RegexFilter.class),
         @JsonSubTypes.Type(name = "gt", value = GreaterFilter.class),
-        @JsonSubTypes.Type(name = "lt", value = LessFilter.class)
+        @JsonSubTypes.Type(name = "lt", value = LessFilter.class),
+        @JsonSubTypes.Type(name = "search", value = SearchFilter.class),
 })
 public interface Filter {
 }
