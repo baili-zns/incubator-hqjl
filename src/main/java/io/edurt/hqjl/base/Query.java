@@ -23,7 +23,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.edurt.hqjl.base.granularity.GranularityFactory;
 import io.edurt.hqjl.filter.Filter;
 import io.edurt.hqjl.type.GroupBy;
+import io.edurt.hqjl.type.Scan;
 import io.edurt.hqjl.type.Timeseries;
+import io.edurt.hqjl.type.TopN;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.joda.time.Interval;
@@ -47,7 +49,9 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "queryType")
 @JsonSubTypes(value = {
         @JsonSubTypes.Type(name = "timeseries", value = Timeseries.class),
-        @JsonSubTypes.Type(name = "groupBy", value = GroupBy.class)
+        @JsonSubTypes.Type(name = "groupBy", value = GroupBy.class),
+        @JsonSubTypes.Type(name = "topN", value = TopN.class),
+        @JsonSubTypes.Type(name = "scan", value = Scan.class),
 })
 public class Query {
 
