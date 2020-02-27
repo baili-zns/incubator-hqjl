@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +43,15 @@ public class AndFilter implements Filter {
     @JsonCreator
     public AndFilter(@JsonProperty("fields") List<Filter> fields) {
         this.fields = fields;
+    }
+
+    @JsonCreator
+    public AndFilter(@JsonProperty("fields") Filter filter) {
+        this.fields = new ArrayList<Filter>() {
+            {
+                add(filter);
+            }
+        };
     }
 
 }

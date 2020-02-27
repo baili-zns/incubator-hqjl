@@ -20,12 +20,11 @@ package io.edurt.hqjl.type;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.edurt.hqjl.aggregator.AggregatorFactory;
 import io.edurt.hqjl.aggregator.post.PostAggregatorFactory;
-import io.edurt.hqjl.base.Granularity;
+import io.edurt.hqjl.base.granularity.GranularityFactory;
 import io.edurt.hqjl.base.Query;
 import io.edurt.hqjl.filter.Filter;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 import java.util.Map;
@@ -40,32 +39,58 @@ import java.util.Map;
  */
 @Data
 @ToString
+@SuperBuilder(toBuilder = true)
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Timeseries extends Query {
 
+    @Builder.Default
+    @JsonProperty(value = "descending")
+    private Boolean descending = false; // 降序,默认false为升序
+
+//    @Builder.Default
+    @Singular
     @JsonProperty(value = "aggregations")
     private List<AggregatorFactory> aggregators; // 聚集体
 
+//    @Builder.Default
+    @Singular
     @JsonProperty(value = "postAggregations")
     private List<PostAggregatorFactory> postAggregators; // 后续聚集体
 
-    public Timeseries() {
+    public Timeseries(String dataSource,
+                      List<String> intervals,
+                      Filter filter,
+                      GranularityFactory granularityFactory,
+                      List<AggregatorFactory> aggregator,
+                      List<PostAggregatorFactory> postAggregator,
+                      Map<String, Object> context) {
+        super(dataSource, intervals, context, granularityFactory, filter);
+//        this.filter = filter;
+//        this.granularity = granularityFactory;
+        this.aggregators = aggregator;
+        this.postAggregators = postAggregator;
+//        this.dataSource = dataSource;
+//        this.intervals = intervals;
+//        this.context = context;
     }
 
     public Timeseries(String dataSource,
                       List<String> intervals,
                       Filter filter,
-                      Granularity granularity,
+                      GranularityFactory granularityFactory,
                       List<AggregatorFactory> aggregator,
                       List<PostAggregatorFactory> postAggregator,
-                      Map<String, Object> context) {
-        this.filter = filter;
-        this.granularity = granularity;
+                      Map<String, Object> context,
+                      Boolean descending) {
+        super(dataSource, intervals, context, granularityFactory, filter);
+//        this.filter = filter;
+//        this.granularity = granularityFactory;
         this.aggregators = aggregator;
         this.postAggregators = postAggregator;
-        this.dataSource = dataSource;
-        this.intervals = intervals;
-        this.context = context;
+//        this.dataSource = dataSource;
+//        this.intervals = intervals;
+//        this.context = context;
+        this.descending = descending;
     }
-
 }

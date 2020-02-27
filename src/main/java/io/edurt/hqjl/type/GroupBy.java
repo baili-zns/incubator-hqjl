@@ -20,12 +20,15 @@ package io.edurt.hqjl.type;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.edurt.hqjl.aggregator.AggregatorFactory;
 import io.edurt.hqjl.aggregator.post.PostAggregatorFactory;
-import io.edurt.hqjl.base.Granularity;
+import io.edurt.hqjl.base.granularity.GranularityFactory;
 import io.edurt.hqjl.base.Query;
 import io.edurt.hqjl.filter.Filter;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Singular;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+import org.joda.time.Interval;
 
 import java.util.List;
 import java.util.Map;
@@ -39,26 +42,30 @@ import java.util.Map;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Data
+@SuperBuilder(toBuilder = true)
 @ToString
 @EqualsAndHashCode(callSuper = true)
 public class GroupBy extends Query {
 
+    @Singular
     @JsonProperty(value = "dimensions")
     public List<String> dimensions;
 
+    @Singular
     @JsonProperty(value = "aggregations")
     public List<AggregatorFactory> aggregators;
 
+    @Singular
     @JsonProperty(value = "postAggregations")
     public List<PostAggregatorFactory> postAggregators;
 
-    public GroupBy(String dataSource, List<String> dimensions, Granularity granularity, Filter filter,
+    public GroupBy(String dataSource, List<String> dimensions, GranularityFactory granularityFactory, Filter filter,
                    List<AggregatorFactory> aggregators, List<PostAggregatorFactory> postAggregators,
                    List<String> intervals, Map<String, Object> context) {
         super();
         this.dataSource = dataSource;
         this.dimensions = dimensions;
-        this.granularity = granularity;
+        this.granularity = granularityFactory;
         this.filter = filter;
         this.aggregators = aggregators;
         this.postAggregators = postAggregators;

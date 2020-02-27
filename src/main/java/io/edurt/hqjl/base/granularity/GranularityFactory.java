@@ -1,4 +1,4 @@
-/**
+package io.edurt.hqjl.base.granularity; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,42 +15,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.edurt.hqjl.filter;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.ToString;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
- * <p> OrFilter </p>
- * <p> Description : OrFilter </p>
+ * <p> AggregatorFactory </p>
+ * <p> Description : AggregatorFactory </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-06 10:45 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2020-01-04 18:29 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@ToString
-public class OrFilter implements Filter {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes(value = {
+        @JsonSubTypes.Type(name = "string", value = StringGranularity.class),
+        @JsonSubTypes.Type(name = "duration", value = DurationGranularity.class),
+        @JsonSubTypes.Type(name = "period", value = PeriodGranularity.class)
 
-    @Getter
-    @JsonProperty(value = "fields")
-    private final List<Filter> fields;
+})
+public interface GranularityFactory {
 
-    @JsonCreator
-    public OrFilter(@JsonProperty("fields") List<Filter> fields) {
-        this.fields = fields;
-    }
+//    String getName();
 
-    @JsonCreator
-    public OrFilter(@JsonProperty("fields") Filter filter) {
-        this.fields = new ArrayList<Filter>() {
-            {
-                add(filter);
-            }
-        };
-    }
 }

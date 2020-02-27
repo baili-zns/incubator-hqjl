@@ -20,11 +20,13 @@ package io.edurt.hqjl.base;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import io.edurt.hqjl.base.granularity.GranularityFactory;
 import io.edurt.hqjl.filter.Filter;
 import io.edurt.hqjl.type.GroupBy;
 import io.edurt.hqjl.type.Timeseries;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+import org.joda.time.Interval;
 
 import java.util.List;
 import java.util.Map;
@@ -38,6 +40,9 @@ import java.util.Map;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Data
+@SuperBuilder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "queryType")
 @JsonSubTypes(value = {
@@ -49,14 +54,16 @@ public class Query {
     @JsonProperty(value = "dataSource")
     protected String dataSource; // 查询数据源
 
+    @Singular
     @JsonProperty(value = "intervals")
     protected List<String> intervals; // 查询数据区间
+
 
     @JsonProperty(value = "context")
     protected Map<String, Object> context; // 额外配置信息
 
     @JsonProperty(value = "granularity")
-    protected Granularity granularity; // 查询粒度
+    protected GranularityFactory granularity; // 查询粒度
 
     @JsonProperty(value = "filter")
     protected Filter filter; // 过滤条件

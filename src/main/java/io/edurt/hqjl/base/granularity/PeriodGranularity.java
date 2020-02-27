@@ -15,42 +15,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.edurt.hqjl.filter;
+package io.edurt.hqjl.base.granularity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.ToString;
-
-import java.util.ArrayList;
-import java.util.List;
+import lombok.*;
 
 /**
- * <p> OrFilter </p>
- * <p> Description : OrFilter </p>
+ * <p> Granularity </p>
+ * <p> Description : Granularity </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-06 10:45 </p>
+ * <p> Create Time : 2020-01-04 17:50 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @ToString
-public class OrFilter implements Filter {
+public class PeriodGranularity implements GranularityFactory {
 
     @Getter
-    @JsonProperty(value = "fields")
-    private final List<Filter> fields;
+    @JsonProperty(value = "period")
+    private final String period; // 区间
+
+    @Getter
+    @JsonProperty(value = "timeZone")
+    private final String timeZone; // 时区
+
+    @Getter
+    @JsonProperty(value = "origin")
+    private final String origin; // 区间开始时间
 
     @JsonCreator
-    public OrFilter(@JsonProperty("fields") List<Filter> fields) {
-        this.fields = fields;
+    public PeriodGranularity(@JsonProperty("period") final String period,
+                             @JsonProperty("timeZone") final String timeZone
+    ) {
+        this.period = period;
+        this.timeZone = timeZone;
+        this.origin = null;
     }
 
     @JsonCreator
-    public OrFilter(@JsonProperty("fields") Filter filter) {
-        this.fields = new ArrayList<Filter>() {
-            {
-                add(filter);
-            }
-        };
+    public PeriodGranularity(@JsonProperty("period") final String period,
+                             @JsonProperty("timeZone") final String timeZone,
+                             @JsonProperty("origin") final String origin
+    ) {
+        this.period = period;
+        this.timeZone = timeZone;
+        this.origin = origin;
     }
 }

@@ -15,10 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.edurt.hqjl.base;
+package io.edurt.hqjl.base.granularity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * <p> Granularity </p>
@@ -28,16 +30,28 @@ import lombok.Data;
  * <p> Create Time : 2020-01-04 17:50 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Data
-public class Granularity {
+@ToString
+public class DurationGranularity implements GranularityFactory {
 
-    @JsonProperty(value = "period")
-    private String period; // 持续时间
+    @Getter
+    @JsonProperty(value = "duration")
+    private final String duration; // 持续时间
 
-    @JsonProperty(value = "timeZone")
-    private String timeZone; // 时区
+    @Getter
+    @JsonProperty(value = "origin")
+    private final String origin; // 时区
 
-    @JsonProperty(value = "type")
-    private String type; // 查询粒度类型
-
+    @JsonCreator
+    public DurationGranularity(@JsonProperty("duration") final String duration
+    ) {
+        this.duration = duration;
+        this.origin = null;
+    }
+    @JsonCreator
+    public DurationGranularity(@JsonProperty("duration") final String duration,
+                               @JsonProperty("origin") final String origin
+    ) {
+        this.duration = duration;
+        this.origin = origin;
+    }
 }

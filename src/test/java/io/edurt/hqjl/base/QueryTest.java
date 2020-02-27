@@ -19,6 +19,9 @@ package io.edurt.hqjl.base;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.edurt.hqjl.base.granularity.Granularity;
+import io.edurt.hqjl.base.granularity.StringGranularity;
+import org.joda.time.Interval;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,15 +43,15 @@ public class QueryTest {
     public static void build(Query query) {
         query.setDataSource("2R4NNDHSGD5R685GSSGN6GH66229F82N");
         query.setIntervals(new ArrayList<String>() {{
-            add("2020-01-01T00:00:00.000+08:00");
-            add("2020-03-01T00:00:00.000+08:00");
+            add(new Interval("2020-01-01T00:00:00.000+08:00").toString());
+            add(new Interval("2020-03-01T00:00:00.000+08:00").toString());
         }});
         query.setContext(null);
         Granularity granularity = new Granularity();
         granularity.setPeriod("P1D");
         granularity.setTimeZone("Asia/Shanghai");
         granularity.setType("period");
-        query.setGranularity(granularity);
+        query.setGranularity(new StringGranularity());
     }
 
     @Before
@@ -63,7 +66,7 @@ public class QueryTest {
 
     @Test
     public void testHasGranularity() throws JsonProcessingException {
-        queryType.setGranularity(new Granularity());
+        queryType.setGranularity(new StringGranularity());
         System.out.println(mapper.writeValueAsString(queryType));
     }
 
