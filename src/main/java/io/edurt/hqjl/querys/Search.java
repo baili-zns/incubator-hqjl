@@ -18,8 +18,11 @@
 package io.edurt.hqjl.querys;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.edurt.hqjl.base.Query;
 import io.edurt.hqjl.base.searchqueryspec.SearchQueryFactory;
+import io.edurt.hqjl.base.sort.SortEnum;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -47,6 +50,10 @@ public class Search extends Query {
 
     @JsonProperty(value = "query")
     private SearchQueryFactory query;
+
+    @Builder.Default
+    @JsonProperty(value = "sort")
+    private SortEnum sort = SortEnum.lexicographic;
 
 
 

@@ -7,7 +7,7 @@ import io.edurt.hqjl.aggregators.AggregatorLongSumFactory;
 import io.edurt.hqjl.base.searchqueryspec.Contains;
 import io.edurt.hqjl.postaggregators.ArithmeticPostAggregator;
 import io.edurt.hqjl.postaggregators.FieldAccessorPostAggregator;
-import io.edurt.hqjl.base.granularity.EnumGranularity;
+import io.edurt.hqjl.base.granularity.StringGranularityEnum;
 import io.edurt.hqjl.base.granularity.StringGranularity;
 import io.edurt.hqjl.filters.*;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class TopNTest {
                 .dimension("sample_dim")
                 .threshold(5)
                 .metric("count")
-                .granularity(new StringGranularity(EnumGranularity.all))
+                .granularity(new StringGranularity(StringGranularityEnum.all))
                 .filter(
                         AndFilter.builder()
                                 .field(new SelectorFilter("dim1", "some_value"))

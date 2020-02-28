@@ -31,7 +31,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes(value = {
         @JsonSubTypes.Type(name = "string", value = StringGranularity.class),
         @JsonSubTypes.Type(name = "duration", value = DurationGranularity.class),
-        @JsonSubTypes.Type(name = "period", value = PeriodGranularity.class)
+        @JsonSubTypes.Type(name = "period", value = PeriodGranularity.class),
+//        @JsonSubTypes.Type(name = "enum", value = StringGranularityEnum.class)
 
 })
 public interface GranularityFactory {

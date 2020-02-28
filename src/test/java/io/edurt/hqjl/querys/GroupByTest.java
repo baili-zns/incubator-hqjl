@@ -6,7 +6,7 @@ import io.edurt.hqjl.aggregators.AggregatorDoubleSumFactory;
 import io.edurt.hqjl.aggregators.AggregatorLongSumFactory;
 import io.edurt.hqjl.postaggregators.ArithmeticPostAggregator;
 import io.edurt.hqjl.postaggregators.FieldAccessorPostAggregator;
-import io.edurt.hqjl.base.granularity.EnumGranularity;
+import io.edurt.hqjl.base.granularity.StringGranularityEnum;
 import io.edurt.hqjl.base.granularity.StringGranularity;
 import io.edurt.hqjl.filters.AndFilter;
 import io.edurt.hqjl.filters.OrFilter;
@@ -29,7 +29,7 @@ public class GroupByTest {
     public void testGroupBy() throws JsonProcessingException {
         GroupBy groupBy = GroupBy.builder()
                 .dataSource("sample_datasource")
-                .granularity(new StringGranularity(EnumGranularity.year))
+                .granularity(new StringGranularity(StringGranularityEnum.year))
                 .dimension("country").dimension("device")
                 .filter(new AndFilter(
                         Arrays.asList(
@@ -52,7 +52,7 @@ public class GroupByTest {
     public void testGroupBy2() throws JsonProcessingException {
         GroupBy groupBy = GroupBy.builder()
                 .dataSource("sample_datasource")
-                .granularity(new StringGranularity(EnumGranularity.year))
+                .granularity(new StringGranularity(StringGranularityEnum.year))
                 .dimension("country").dimension("device")
                 .filter(
                         AndFilter.builder()

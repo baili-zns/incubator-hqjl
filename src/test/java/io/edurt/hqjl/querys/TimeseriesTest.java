@@ -103,7 +103,7 @@ public class TimeseriesTest {
                     add(new Interval("2020-01-01/2100-01-01").toString());
                 }},
                 new AndFilter(Arrays.asList((new SelectorFilter("alarm", "true")))),
-                new StringGranularity(EnumGranularity.year),
+                new StringGranularity(StringGranularityEnum.year),
 //                new DurationGranularity("31622400000"),
 //                new PeriodGranularity("P1Y","Asia/Shanghai",""),
                 Arrays.asList(new AggregatorCountFactory("count")),
@@ -124,7 +124,7 @@ public class TimeseriesTest {
 //                }})
 //                .filter(new AndFilter((new SelectorFilter("alarm", "true"))))
 //                .filter(new AndFilter(Arrays.asList((new SelectorFilter("alarm", "true")))))
-                .granularity(new StringGranularity(EnumGranularity.year))
+                .granularity(new StringGranularity(StringGranularityEnum.year))
                 .aggregator(new AggregatorCountFactory("count"))
                 .build();
         System.out.println(mapper.writeValueAsString(timeseries));

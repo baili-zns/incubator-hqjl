@@ -18,18 +18,14 @@
 package io.edurt.hqjl.base.granularity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializable;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
-import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import lombok.Getter;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * <p> Granularity </p>
@@ -41,20 +37,21 @@ import java.io.Serializable;
  */
 //@JsonSerialize(using = StdSerializer.class)
 //@JsonIgnoreProperties(value = {"type","name"})//会导致jackson序列化出错
+    @Deprecated
 public class StringGranularity implements GranularityFactory, JsonSerializable {
 
     @Getter
     @JsonProperty(value = "granularity")
-    private final EnumGranularity granularity; // 持续时间
+    private final StringGranularityEnum granularity; // 持续时间
 
     @JsonCreator
     public StringGranularity(
     ) {
-        this.granularity = EnumGranularity.all;
+        this.granularity = StringGranularityEnum.all;
     }
 
     @JsonCreator
-    public StringGranularity(@JsonProperty("granularity") final EnumGranularity granularity
+    public StringGranularity(@JsonProperty("granularity") final StringGranularityEnum granularity
     ) {
         this.granularity = granularity;
     }
