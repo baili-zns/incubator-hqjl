@@ -1,0 +1,15 @@
+package io.edurt.hqjl.filter;
+
+import lombok.Builder;
+import lombok.ToString;
+
+/**
+ * @program: incubator-hqjl
+ * @description: The true filter is a filter which matches all values. It can be used to temporarily disable other filters without removing the filter.
+ * @author: zns
+ * @create: 2020-02-28 13:10
+ */
+@ToString
+@Builder
+public class TrueFilter {
+}

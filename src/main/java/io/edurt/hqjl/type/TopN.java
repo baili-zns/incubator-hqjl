@@ -28,14 +28,11 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 import java.util.Map;
-
 /**
- * <p> Timeseries </p>
- * <p> Description : Timeseries </p>
- * <p> Author : qianmoQ </p>
- * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-04 17:39 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * @program: incubator-hqjl
+ * @description: test
+ * @author: zns
+ * @create: 2020-02-27 16:40
  */
 @Data
 @ToString

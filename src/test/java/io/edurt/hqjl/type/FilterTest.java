@@ -30,7 +30,7 @@ public class FilterTest {
     public void searchFilterTest() throws JsonProcessingException {
         SearchFilter searchFilter = SearchFilter.builder()
                 .dimension("plateType")
-                .query(SearchQuery.builder().type("contains").value("01").build())
+                .query(SearchQuery.builder().querytype("contains").value("01").build())
 //                .query(new SearchQuery("contains","01"))
                 .build();
         System.out.println(searchFilter);

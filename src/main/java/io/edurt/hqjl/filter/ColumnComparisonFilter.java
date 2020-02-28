@@ -19,46 +19,25 @@ package io.edurt.hqjl.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
-import lombok.experimental.SuperBuilder;
+import lombok.Singular;
+
+import java.util.List;
 
 
-@ToString
-@SuperBuilder(toBuilder = true)
-public class SearchFilter implements Filter {
-
-    @ToString
-    @SuperBuilder(toBuilder = true)
-//    @JsonTypeInfo(use = JsonTypeInfo.Id.NONE)
-    public static class SearchQuery {
-        @Getter
-        @JsonProperty(value = "type")
-        protected final String querytype; //
-        @Getter
-        @JsonProperty(value = "value")
-        protected final String value;
-
-        public SearchQuery(String querytype, String value) {
-            this.querytype = querytype;
-            this.value = value;
-        }
-    }
+@Builder
+public class ColumnComparisonFilter implements Filter {
 
     @Getter
-    @JsonProperty(value = "dimension")
-    private final String dimension;
-
-    @Getter
-    @JsonProperty(value = "query")
-    private final SearchQuery query;
+    @Singular
+    @JsonProperty(value = "dimensions")
+    private final List<String> dimensions;
 
 
     @JsonCreator
-    public SearchFilter(@JsonProperty(value = "dimension") String dimension, SearchQuery query) {
-        this.dimension = dimension;
-        this.query = query;
+    public ColumnComparisonFilter(@JsonProperty(value = "dimensions") List<String> dimensions) {
+        this.dimensions = dimensions;
     }
 
 }

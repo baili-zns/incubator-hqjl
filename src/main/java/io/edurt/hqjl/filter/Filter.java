@@ -19,7 +19,6 @@ package io.edurt.hqjl.filter;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.sun.jndi.toolkit.dir.SearchFilter;
 
 /**
  * <p> Filter </p>
@@ -40,6 +39,12 @@ import com.sun.jndi.toolkit.dir.SearchFilter;
         @JsonSubTypes.Type(name = "gt", value = GreaterFilter.class),
         @JsonSubTypes.Type(name = "lt", value = LessFilter.class),
         @JsonSubTypes.Type(name = "search", value = SearchFilter.class),
+        @JsonSubTypes.Type(name = "interval", value = IntervalFilter.class),
+        @JsonSubTypes.Type(name = "columnComparison", value = ColumnComparisonFilter.class),
+        @JsonSubTypes.Type(name = "regex", value = RegularExpressionFilter.class),
+        @JsonSubTypes.Type(name = "javascript", value = JavaScriptFilter.class),
+        @JsonSubTypes.Type(name = "like", value = LikeFilter.class),
+        @JsonSubTypes.Type(name = "true", value = TrueFilter.class),
 })
 public interface Filter {
 }

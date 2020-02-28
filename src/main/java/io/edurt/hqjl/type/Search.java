@@ -18,50 +18,34 @@
 package io.edurt.hqjl.type;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.edurt.hqjl.aggregator.AggregatorFactory;
-import io.edurt.hqjl.aggregator.post.PostAggregatorFactory;
 import io.edurt.hqjl.base.Query;
-import io.edurt.hqjl.base.granularity.GranularityFactory;
-import io.edurt.hqjl.filter.Filter;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
-import java.util.Map;
 /**
  * @program: incubator-hqjl
  * @description: test
  * @author: zns
- * @create: 2020-02-27 16:40
+ * @create: 2020年02月28日13:53:24
  */
 @Data
 @ToString
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Scan extends Query {
-
-    @JsonProperty(value = "resultFormat")
-    private String resultFormat;
-
-    @JsonProperty(value = "batchSize")
-    private Integer batchSize=20480;
+public class Search extends Query {
 
     @Builder.Default
     @JsonProperty(value = "limit")
     private Integer limit = 100;
 
-    @Builder.Default
-    @JsonProperty(value = "order")
-    private String order = "none";
-
-    @Builder.Default
-    @JsonProperty(value = "legacy")
-    private Boolean legacy = false;
-
     @Singular
-    @JsonProperty(value = "columns")
-    private List<String> columns;
+    @JsonProperty(value = "searchDimensions")
+    private List<String> searchDimensions;
+
+
+
 
 //    @Singular
 //    @JsonProperty(value = "aggregations")

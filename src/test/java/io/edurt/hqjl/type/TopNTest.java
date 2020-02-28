@@ -8,11 +8,8 @@ import io.edurt.hqjl.aggregator.post.ArithmeticPostAggregator;
 import io.edurt.hqjl.aggregator.post.FieldAccessorPostAggregator;
 import io.edurt.hqjl.base.granularity.EnumGranularity;
 import io.edurt.hqjl.base.granularity.StringGranularity;
-import io.edurt.hqjl.filter.AndFilter;
-import io.edurt.hqjl.filter.InFilter;
-import io.edurt.hqjl.filter.SearchFilter;
+import io.edurt.hqjl.filter.*;
 import io.edurt.hqjl.filter.SearchFilter.SearchQuery;
-import io.edurt.hqjl.filter.SelectorFilter;
 import lombok.ToString;
 import org.junit.Test;
 
@@ -55,7 +52,32 @@ public class TopNTest {
     }
 
     @Test
-    public void ScanTest() {
+    public void ScanTest() throws JsonProcessingException {
+        Scan scan = Scan.builder()
+                .dataSource("JcbkData")
+                .resultFormat("list")
+                .columns(Arrays.asList("__time",
+                        "plateNo",
+                        "plateType",
+                        "bayName",
+                        "tagStartTimeTop",
+                        "direction",
+                        "tagControlRange",
+                        "tagControlType"))
+                .interval("1970-01-01/2022-01-02")
+                .order("ascending")
+                .batchSize(20480)
+                .limit(100)
+                .filter(AndFilter.builder()
+                        .field(IntervalFilter.builder().dimension("tagStartTimeTop").interval("2014-10-01/2024-10-07").build())
+                        .field(SelectorFilter.builder().dimension("plateType").value("01").build())
+                        .field(new InFilter("direction", Arrays.asList("1", "2", "3")))
+                        .field(SearchFilter.builder().dimension("tagControlRange").query(SearchQuery.builder().querytype("contains").value("滨湖区").build()).build())
+                        .field(new InFilter("tagControlType", Arrays.asList("01", "02", "03")))
+                        .field(SearchFilter.builder().dimension("plateNo").query(new SearchQuery("contains", "苏A12345")).build())
+                        .build())
+                .build();
 
+        System.out.println(mapper.writeValueAsString(scan));
     }
 }
