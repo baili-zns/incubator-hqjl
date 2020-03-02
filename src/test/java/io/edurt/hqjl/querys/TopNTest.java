@@ -49,5 +49,6 @@ public class TopNTest {
                 .interval(Interval.parse("2013-08-31T00:00:00.000/2013-09-03T00:00:00.000"))
                 .build();
         System.out.println(mapper.writeValueAsString(topN));
+        System.out.println(topN.toJsonString());
     }
 }

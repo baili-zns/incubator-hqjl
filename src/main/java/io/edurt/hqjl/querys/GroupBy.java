@@ -28,6 +28,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Singular;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.joda.time.Interval;
 
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class GroupBy extends Query {
 
     public GroupBy(String dataSource, List<String> dimensions, GranularityFactory granularityFactory, Filter filter,
                    List<AggregatorFactory> aggregators, List<PostAggregatorFactory> postAggregators,
-                   List<String> intervals, Map<String, Object> context) {
+                   List<Interval> intervals, Map<String, Object> context) {
         super();
         this.dataSource = dataSource;
         this.dimensions = dimensions;

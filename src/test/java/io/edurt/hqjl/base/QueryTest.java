@@ -42,9 +42,9 @@ public class QueryTest {
 
     public static void build(Query query) {
         query.setDataSource("2R4NNDHSGD5R685GSSGN6GH66229F82N");
-        query.setIntervals(new ArrayList<String>() {{
-            add(new Interval("2020-01-01/2100-01-01").toString());
-            add(new Interval("2020-01-01/2100-01-01").toString());
+        query.setIntervals(new ArrayList<Interval>() {{
+            add(new Interval("2020-01-01/2100-01-01"));
+            add(new Interval("2020-01-01/2100-01-01"));
         }});
         query.setContext(null);
         Granularity granularity = new Granularity();

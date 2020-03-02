@@ -25,6 +25,7 @@ import io.edurt.hqjl.base.granularity.GranularityFactory;
 import io.edurt.hqjl.filters.Filter;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.joda.time.Interval;
 
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class TopN extends Query {
     private List<PostAggregatorFactory> postAggregators; // 后续聚集体
 
     public TopN(String dataSource,
-                List<String> intervals,
+                List<Interval> intervals,
                 Filter filter,
                 GranularityFactory granularityFactory,
                 List<AggregatorFactory> aggregator,
@@ -79,7 +80,7 @@ public class TopN extends Query {
     }
 
     public TopN(String dataSource,
-                List<String> intervals,
+                List<Interval> intervals,
                 Filter filter,
                 GranularityFactory granularityFactory,
                 List<AggregatorFactory> aggregator,
