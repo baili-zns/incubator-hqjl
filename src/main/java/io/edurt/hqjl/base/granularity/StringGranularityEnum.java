@@ -16,11 +16,13 @@ import java.io.IOException;
  * @create: 2020-02-26 15:48
  */
 //@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,include = JsonTypeInfo.As.WRAPPER_OBJECT)
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NONE,include = JsonTypeInfo.As.EXTERNAL_PROPERTY)
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NONE,include = JsonTypeInfo.As.WRAPPER_OBJECT)
 //@JsonSubTypes(value = {
 //        @JsonSubTypes.Type(name = "type", value = StringGranularityEnum.class),
 //})
-public enum StringGranularityEnum implements GranularityFactory, JsonSerializable {
+public enum StringGranularityEnum implements GranularityFactory
+        , JsonSerializable
+{
     all, none, second, minute, fifteen_minute, thirty_minute, hour, day, week, month, quarter, year;
 
 //    all("all"),

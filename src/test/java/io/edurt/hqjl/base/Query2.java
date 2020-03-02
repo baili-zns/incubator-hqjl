@@ -20,8 +20,6 @@ package io.edurt.hqjl.base;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import io.edurt.hqjl.base.granularity.GranularityFactory;
-import io.edurt.hqjl.base.granularity.StringGranularityEnum;
 import io.edurt.hqjl.filters.Filter;
 import io.edurt.hqjl.querys.GroupBy;
 import io.edurt.hqjl.querys.Scan;
@@ -53,7 +51,7 @@ import java.util.Map;
         @JsonSubTypes.Type(name = "topN", value = TopN.class),
         @JsonSubTypes.Type(name = "scan", value = Scan.class),
 })
-public class Query {
+public class Query2 {
 
     @JsonProperty(value = "dataSource")
     protected String dataSource; // 查询数据源
@@ -66,9 +64,8 @@ public class Query {
     @JsonProperty(value = "context")
     protected Map<String, Object> context; // 额外配置信息
 
-    @Builder.Default
     @JsonProperty(value = "granularity")
-    protected GranularityFactory granularity = StringGranularityEnum.all; // 查询粒度
+    protected StringGranularityEnum2 granularity; // 查询粒度
 
     @JsonProperty(value = "filter")
     protected Filter filter; // 过滤条件

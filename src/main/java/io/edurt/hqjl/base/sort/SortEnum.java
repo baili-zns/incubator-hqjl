@@ -12,26 +12,28 @@ import lombok.Getter;
         @JsonSubTypes.Type(name = "type", value = SortEnum.class),
 })
 public enum SortEnum {
-    alphanumeric("alphanumeric"),
-    lexicographic("lexicographic"),
-    numeric("numeric"),
-    strlen("strlen"),
-    version("version");
+     alphanumeric, lexicographic, numeric, strlen, version;
 
-
-    @Getter
-    @JsonProperty(value = "type")
-    private String type;
-
-    @JsonCreator
-    SortEnum(
-    ) {
-        this.type = SortEnum.valueOf("lexicographic").name();
-    }
-
-    @JsonCreator
-    SortEnum(@JsonProperty("type") final String sort
-    ) {
-        this.type = sort;
-    }
+//    alphanumeric("alphanumeric"),
+//    lexicographic("lexicographic"),
+//    numeric("numeric"),
+//    strlen("strlen"),
+//    version("version");
+//
+//
+//    @Getter
+//    @JsonProperty(value = "type")
+//    private String type;
+//
+//    @JsonCreator
+//    SortEnum(
+//    ) {
+//        this.type = SortEnum.valueOf("lexicographic").name();
+//    }
+//
+//    @JsonCreator
+//    SortEnum(@JsonProperty("type") final String sort
+//    ) {
+//        this.type = sort;
+//    }
 }
