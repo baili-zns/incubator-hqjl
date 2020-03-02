@@ -36,10 +36,14 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Scan extends Query {
+    public enum ScanOrder {
+        none,ascending,descending;
+    }
 
     @JsonProperty(value = "resultFormat")
     private String resultFormat;
 
+    @Builder.Default
     @JsonProperty(value = "batchSize")
     private Integer batchSize=20480;
 
@@ -47,9 +51,13 @@ public class Scan extends Query {
     @JsonProperty(value = "limit")
     private Integer limit = 100;
 
+//    @Builder.Default
+//    @JsonProperty(value = "order")
+//    private String order = "none";
+
     @Builder.Default
     @JsonProperty(value = "order")
-    private String order = "none";
+    private ScanOrder order = ScanOrder.none;
 
     @Builder.Default
     @JsonProperty(value = "legacy")

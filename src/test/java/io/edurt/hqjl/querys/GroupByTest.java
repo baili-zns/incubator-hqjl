@@ -42,7 +42,7 @@ public class GroupByTest {
                         )))
                 .aggregator(new AggregatorLongSumFactory("total_usage", "user_count"))
                 .aggregator(new AggregatorDoubleSumFactory("data_transfer", "data_transfer"))
-                .interval(Interval.parse("2012-01-01T00:00:00.000/2012-01-03T00:00:00.000").toString())
+                .interval(Interval.parse("2012-01-01T00:00:00.000/2012-01-03T00:00:00.000"))
                 .build();
         System.out.println(mapper.writeValueAsString(groupBy));
         System.out.println(groupBy);
@@ -71,7 +71,7 @@ public class GroupByTest {
                                 .field(new FieldAccessorPostAggregator("data_transfer"))
                                 .field(new FieldAccessorPostAggregator("total_usage")).build()
                 )
-                .interval(Interval.parse("2012-01-01T00:00:00.000/2012-01-03T00:00:00.000").toString())
+                .interval(Interval.parse("2012-01-01T00:00:00.000/2012-01-03T00:00:00.000"))
                 .build();
         System.out.println(mapper.writeValueAsString(groupBy));
         System.out.println(groupBy);

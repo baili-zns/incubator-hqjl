@@ -99,8 +99,8 @@ public class TimeseriesTest {
     public void testAlarm() throws JsonProcessingException {
         Timeseries timeseries = new Timeseries(
                 "JcbkData",
-                new ArrayList<String>() {{
-                    add(new Interval("2020-01-01/2100-01-01").toString());
+                new ArrayList<Interval>() {{
+                    add(new Interval("2020-01-01/2100-01-01"));
                 }},
                 new AndFilter(Arrays.asList((new SelectorFilter("alarm", "true")))),
                 new StringGranularity(StringGranularityEnum.year),
@@ -118,7 +118,7 @@ public class TimeseriesTest {
     public void testBuild() throws JsonProcessingException {
         Timeseries timeseries = Timeseries.builder()
                 .dataSource("JcbkData")
-                .interval(new Interval("2020-01-01/2100-01-01").toString())
+                .interval(new Interval("2020-01-01/2100-01-01"))
 //                .intervals(new ArrayList<String>() {{
 //                    add(new Interval("2020-01-01/2100-01-01").toString());
 //                }})

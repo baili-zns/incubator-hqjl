@@ -6,6 +6,7 @@ import io.edurt.hqjl.base.granularity.StringGranularity;
 import io.edurt.hqjl.base.granularity.StringGranularityEnum;
 import io.edurt.hqjl.base.searchqueryspec.InsensitiveContains;
 import io.edurt.hqjl.base.sort.SortEnum;
+import org.joda.time.Interval;
 import org.junit.Test;
 
 /**
@@ -26,7 +27,7 @@ public class SearchTest {
                 .searchDimension("dim2")
                 .query(new InsensitiveContains("Ke"))
                 .sort(SortEnum.lexicographic)
-                .interval("2013-01-01T00:00:00.000/2013-01-03T00:00:00.000")
+                .interval(Interval.parse("2013-01-01T00:00:00.000/2013-01-03T00:00:00.000"))
                 .build();
         System.out.println(mapper.writeValueAsString(search));
     }

@@ -25,6 +25,7 @@ import io.edurt.hqjl.base.Query;
 import io.edurt.hqjl.filters.Filter;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.joda.time.Interval;
 
 import java.util.List;
 import java.util.Map;
@@ -59,7 +60,7 @@ public class Timeseries extends Query {
     private List<PostAggregatorFactory> postAggregators; // 后续聚集体
 
     public Timeseries(String dataSource,
-                      List<String> intervals,
+                      List<Interval> intervals,
                       Filter filter,
                       GranularityFactory granularityFactory,
                       List<AggregatorFactory> aggregator,
@@ -76,7 +77,7 @@ public class Timeseries extends Query {
     }
 
     public Timeseries(String dataSource,
-                      List<String> intervals,
+                      List<Interval> intervals,
                       Filter filter,
                       GranularityFactory granularityFactory,
                       List<AggregatorFactory> aggregator,

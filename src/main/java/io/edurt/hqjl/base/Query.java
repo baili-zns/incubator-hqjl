@@ -20,6 +20,7 @@ package io.edurt.hqjl.base;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.edurt.hqjl.base.granularity.GranularityFactory;
 import io.edurt.hqjl.base.granularity.StringGranularityEnum;
 import io.edurt.hqjl.filters.Filter;
@@ -27,8 +28,10 @@ import io.edurt.hqjl.querys.GroupBy;
 import io.edurt.hqjl.querys.Scan;
 import io.edurt.hqjl.querys.Timeseries;
 import io.edurt.hqjl.querys.TopN;
+import io.edurt.hqjl.serializer.IntervalsSerializer;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.joda.time.Interval;
 
 import java.util.List;
 import java.util.Map;
@@ -59,8 +62,9 @@ public class Query {
     protected String dataSource; // 查询数据源
 
     @Singular
+    @JsonSerialize(using = IntervalsSerializer.class)
     @JsonProperty(value = "intervals")
-    protected List<String> intervals; // 查询数据区间
+    protected List<Interval> intervals; // 查询数据区间
 
 
     @JsonProperty(value = "context")
