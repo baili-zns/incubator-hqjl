@@ -17,10 +17,7 @@
  */
 package io.edurt.hqjl.base;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -60,6 +57,10 @@ import java.util.Map;
         @JsonSubTypes.Type(name = "scan", value = Scan.class),
 })
 public class Query {
+    @Builder.Default
+    @JsonIgnore
+    public static ObjectMapper objectMapper = new ObjectMapper();
+
     @JsonProperty(value = "dataSource")
     protected String dataSource; // 查询数据源
 
@@ -80,7 +81,7 @@ public class Query {
     protected Filter filter; // 过滤条件
 
     public String toJsonString() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+//        ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(this);
     }
 
