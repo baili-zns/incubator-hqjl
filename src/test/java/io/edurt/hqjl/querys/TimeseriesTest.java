@@ -19,6 +19,7 @@ package io.edurt.hqjl.querys;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableMap;
 import io.edurt.hqjl.aggregators.AggregatorCountFactory;
 import io.edurt.hqjl.base.*;
 import io.edurt.hqjl.base.granularity.*;
@@ -161,6 +162,25 @@ public class TimeseriesTest {
         System.out.println(interval1);
         System.out.println(interval2.toString());
         System.out.println(interval3.toString());
+    }
+
+    @Test
+    public void yearTest() throws JsonProcessingException {
+        Integer startTime = DateTime.now().getYear();
+        Integer endTime = startTime + 1;
+        String times = startTime + "/" + endTime;
+        Timeseries timeseries = Timeseries.builder()
+                .dataSource("JcbkData")
+                .granularity(StringGranularityEnum.year)
+                .descending(false)
+                .filter(new SelectorFilter("alarm", "true"))
+                .aggregator(new AggregatorCountFactory("count"))
+                .context(ImmutableMap.<String, Object>builder()
+                        .put("zero-filling", true)
+                        .build())
+                .interval(new Interval(times))
+                .build();
+        System.out.println(timeseries.toJsonString());
     }
 
 

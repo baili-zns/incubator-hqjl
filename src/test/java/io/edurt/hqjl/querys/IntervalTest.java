@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.edurt.hqjl.base.Query;
 import io.edurt.hqjl.base.Query2;
+import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.junit.Test;
 
@@ -31,6 +32,21 @@ public class IntervalTest {
         System.out.println(objectMapper.writeValueAsString(interval));
         System.out.println(objectMapper.writeValueAsString(query2));
 
+    }
+
+    @Test
+    public void intervalYearTest() throws JsonProcessingException {
+        Integer thisyear = DateTime.now().getYear();
+        Integer startTime = DateTime.now().getYear();
+        Integer endTime = startTime + 1;
+        String times = startTime + "/" + endTime;
+
+        System.out.println(thisyear);
+        System.out.println(thisyear+1);
+        Interval interval = new Interval(times);
+        System.out.println(interval);
+        System.out.println(objectMapper.writeValueAsString(interval));
+        System.out.println(objectMapper.writeValueAsString(interval.toString()));
     }
 
 }

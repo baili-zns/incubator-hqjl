@@ -19,9 +19,12 @@ package io.edurt.hqjl.filters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.edurt.hqjl.serializer.IntervalsSerializer;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Singular;
+import org.joda.time.Interval;
 
 import java.util.List;
 
@@ -32,14 +35,19 @@ public class IntervalFilter implements Filter {
     @JsonProperty(value = "dimension")
     private final String dimension;
 
-    @Getter
+//    @Getter
+//    @Singular
+//    @JsonProperty(value = "intervals")
+//    protected List<String> intervals; // 查询数据区间
+
     @Singular
+    @JsonSerialize(using = IntervalsSerializer.class)
     @JsonProperty(value = "intervals")
-    protected List<String> intervals; // 查询数据区间
+    protected List<Interval> intervals;
 
     @JsonCreator
     public IntervalFilter(@JsonProperty(value = "dimension") String dimension,
-                          @JsonProperty(value = "intervals") List<String> intervals) {
+                          @JsonProperty(value = "intervals") List<Interval> intervals) {
         this.dimension = dimension;
         this.intervals = intervals;
     }
