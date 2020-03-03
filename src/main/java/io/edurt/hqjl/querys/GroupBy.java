@@ -61,7 +61,7 @@ public class GroupBy extends Query {
 
     public GroupBy(String dataSource, List<String> dimensions, GranularityFactory granularityFactory, Filter filter,
                    List<AggregatorFactory> aggregators, List<PostAggregatorFactory> postAggregators,
-                   List<Interval> intervals, Map<String, Object> context) {
+                   List<Interval> intervals, Map<String, Object> contexts) {
         super();
         this.dataSource = dataSource;
         this.dimensions = dimensions;
@@ -70,7 +70,7 @@ public class GroupBy extends Query {
         this.aggregators = aggregators;
         this.postAggregators = postAggregators;
         this.intervals = intervals;
-        this.context = context;
+        this.contexts = contexts;
     }
 
 }

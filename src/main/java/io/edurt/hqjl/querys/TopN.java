@@ -66,11 +66,11 @@ public class TopN extends Query {
                 GranularityFactory granularityFactory,
                 List<AggregatorFactory> aggregator,
                 List<PostAggregatorFactory> postAggregator,
-                Map<String, Object> context,
+                Map<String, Object> contexts,
                 String dimension,
                 String metric,
                 Integer threshold) {
-        super(dataSource, intervals, context, granularityFactory, filter);
+        super(dataSource, intervals, contexts, granularityFactory, filter);
 
         this.aggregators = aggregator;
         this.postAggregators = postAggregator;
@@ -85,10 +85,10 @@ public class TopN extends Query {
                 GranularityFactory granularityFactory,
                 List<AggregatorFactory> aggregator,
                 List<PostAggregatorFactory> postAggregator,
-                Map<String, Object> context,
+                Map<String, Object> contexts,
                 String dimension,
                 String metric) {
-        super(dataSource, intervals, context, granularityFactory, filter);
+        super(dataSource, intervals, contexts, granularityFactory, filter);
 
         this.aggregators = aggregator;
         this.postAggregators = postAggregator;

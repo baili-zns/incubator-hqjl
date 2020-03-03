@@ -61,8 +61,8 @@ public class Timeseries extends Query {
                       GranularityFactory granularityFactory,
                       List<AggregatorFactory> aggregator,
                       List<PostAggregatorFactory> postAggregator,
-                      Map<String, Object> context) {
-        super(dataSource, intervals, context, granularityFactory, filter);
+                      Map<String, Object> contexts) {
+        super(dataSource, intervals, contexts, granularityFactory, filter);
 //        this.filter = filter;
 //        this.granularity = granularityFactory;
         this.aggregators = aggregator;
@@ -78,9 +78,9 @@ public class Timeseries extends Query {
                       GranularityFactory granularityFactory,
                       List<AggregatorFactory> aggregator,
                       List<PostAggregatorFactory> postAggregator,
-                      Map<String, Object> context,
+                      Map<String, Object> contexts,
                       Boolean descending) {
-        super(dataSource, intervals, context, granularityFactory, filter);
+        super(dataSource, intervals, contexts, granularityFactory, filter);
 //        this.filter = filter;
 //        this.granularity = granularityFactory;
         this.aggregators = aggregator;

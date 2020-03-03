@@ -19,6 +19,8 @@ package io.edurt.hqjl.filters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.edurt.hqjl.base.extractionFn.ExtractionFn;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -31,6 +33,7 @@ import lombok.Getter;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Builder
+@AllArgsConstructor
 public class SelectorFilter implements Filter {
 
     @Getter
@@ -40,6 +43,9 @@ public class SelectorFilter implements Filter {
     @Getter
     @JsonProperty(value = "value")
     private final String value;
+
+    @JsonProperty(value = "extractionFn")
+    private ExtractionFn extractionFn;
 
     @JsonCreator
     public SelectorFilter(@JsonProperty(value = "dimension") String dimension,

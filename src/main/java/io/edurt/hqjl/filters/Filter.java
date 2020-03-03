@@ -45,6 +45,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(name = "javascript", value = JavaScriptFilter.class),
         @JsonSubTypes.Type(name = "like", value = LikeFilter.class),
         @JsonSubTypes.Type(name = "true", value = TrueFilter.class),
+        @JsonSubTypes.Type(name = "bound", value = BoundFilter.class),
 })
 public interface Filter {
 }

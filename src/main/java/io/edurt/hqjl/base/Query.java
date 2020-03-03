@@ -69,9 +69,9 @@ public class Query {
     @JsonProperty(value = "intervals")
     protected List<Interval> intervals; // 查询数据区间
 
-
+    @Singular
     @JsonProperty(value = "context")
-    protected Map<String, Object> context; // 额外配置信息
+    protected Map<String, Object> contexts; // 额外配置信息
 
     @Builder.Default
     @JsonProperty(value = "granularity")

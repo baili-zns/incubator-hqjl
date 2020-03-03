@@ -46,7 +46,7 @@ public class QueryTest {
             add(new Interval("2020-01-01/2100-01-01"));
             add(new Interval("2020-01-01/2100-01-01"));
         }});
-        query.setContext(null);
+        query.setContexts(null);
         Granularity granularity = new Granularity();
         granularity.setPeriod("P1D");
         granularity.setTimeZone("Asia/Shanghai");

@@ -175,9 +175,10 @@ public class TimeseriesTest {
                 .descending(false)
                 .filter(new SelectorFilter("alarm", "true"))
                 .aggregator(new AggregatorCountFactory("count"))
-                .context(ImmutableMap.<String, Object>builder()
-                        .put("zero-filling", true)
-                        .build())
+//                .contexts(ImmutableMap.<String, Object>builder()
+//                        .put("zero-filling", true)
+//                        .build())
+                .context("zero-filling",true)
                 .interval(new Interval(times))
                 .build();
         System.out.println(timeseries.toJsonString());

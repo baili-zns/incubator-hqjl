@@ -22,9 +22,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.collect.Iterables;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Singular;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +38,7 @@ import java.util.List;
  * <p> Create Time : 2020-01-09 10:30 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
+@Builder
 @ToString
 public class InFilter implements Filter {
 
@@ -43,8 +47,9 @@ public class InFilter implements Filter {
     private final String dimension;
 
     @Getter
+    @Singular
     @JsonProperty(value = "values")
-    private final ImmutableSortedSet<String> values;
+    private final List<String> values;
 
     @JsonCreator
     public InFilter(@JsonProperty(value = "dimension") String dimension,
@@ -53,7 +58,7 @@ public class InFilter implements Filter {
                 Iterables.transform(
                         values, input -> Strings.nullToEmpty(input)
                 )
-        );
+        ).asList();
         this.dimension = dimension;
     }
 
