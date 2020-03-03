@@ -36,7 +36,7 @@ public class ScanTest {
                 .batchSize(20480)
                 .limit(100)
                 .filter(AndFilter.builder()
-                        .field(IntervalFilter.builder().dimension("tagStartTimeTop").interval("2014-10-01/2024-10-07").build())
+                        .field(IntervalFilter.builder().dimension("tagStartTimeTop").interval(new Interval("2014-10-01/2024-10-07")).build())
                         .field(SelectorFilter.builder().dimension("plateType").value("01").build())
                         .field(new InFilter("direction", Arrays.asList("1", "2", "3")))
                         .field(SearchFilter.builder().dimension("tagControlRange").query(Contains.builder().value("滨湖区").build()).build())

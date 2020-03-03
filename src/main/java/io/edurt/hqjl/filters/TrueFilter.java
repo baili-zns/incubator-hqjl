@@ -1,6 +1,7 @@
 package io.edurt.hqjl.filters;
 
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -11,5 +12,6 @@ import lombok.ToString;
  */
 @ToString
 @Builder
-public class TrueFilter {
+@NoArgsConstructor
+public class TrueFilter implements Filter{
 }
