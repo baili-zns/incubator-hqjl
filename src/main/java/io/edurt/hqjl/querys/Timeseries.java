@@ -30,14 +30,7 @@ import org.joda.time.Interval;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p> Timeseries </p>
- * <p> Description : Timeseries </p>
- * <p> Author : qianmoQ </p>
- * <p> Version : 1.0 </p>
- * <p> Create Time : 2020-01-04 17:39 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
- */
+
 @Data
 @ToString
 @SuperBuilder(toBuilder = true)
@@ -48,6 +41,9 @@ public class Timeseries extends Query {
     @Builder.Default
     @JsonProperty(value = "descending")
     private Boolean descending = false; // 降序,默认false为升序
+
+    @JsonProperty(value = "limit")
+    private Integer limit;
 
 //    @Builder.Default
     @Singular
