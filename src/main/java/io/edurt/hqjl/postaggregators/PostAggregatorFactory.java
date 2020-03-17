@@ -40,7 +40,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(name = "longLeast", value = LongLeastPostAggregator.class),
         @JsonSubTypes.Type(name = "javascript", value = JavaScriptPostAggregator.class),
         @JsonSubTypes.Type(name = "hyperUniqueCardinality", value = HyperUniquePostAggregator.class),
+        @JsonSubTypes.Type(name = "thetaSketchEstimate", value = ThetaSketchEstimate.class),
+        @JsonSubTypes.Type(name = "thetaSketchSetOp", value = ThetaSketchSetOp.class),
+        @JsonSubTypes.Type(name = "thetaSketchToString", value = ThetaSketchToString.class),
 })
 public interface PostAggregatorFactory {
-    String getName();
+//    String getName();
 }

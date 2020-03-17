@@ -33,7 +33,12 @@
             <url>http://192.168.8.220:8092/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>localRepository</id>-->
+<!--            <url>~/mavenrepository</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
     <dependencies>
         <dependency>

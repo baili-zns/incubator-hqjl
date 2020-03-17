@@ -35,11 +35,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(name = "doubleSum", value = AggregatorDoubleSumFactory.class),
         @JsonSubTypes.Type(name = "doubleMax", value = AggregatorDoubleMaxFactory.class),
         @JsonSubTypes.Type(name = "doubleMin", value = AggregatorDoubleMinFactory.class),
-        @JsonSubTypes.Type(name = "count", value = AggregatorCountFactory.class)
+        @JsonSubTypes.Type(name = "count", value = AggregatorCountFactory.class),
+        @JsonSubTypes.Type(name = "thetaSketch", value = AggregatorThetaSketch.class),
+        @JsonSubTypes.Type(name = "filtered", value = AggregatorFiltered.class),
 
 })
 public interface AggregatorFactory {
-
-    String getName();
-
 }
