@@ -2,14 +2,8 @@ package io.edurt.hqjl.base.extractionFn;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.edurt.hqjl.base.granularity.GranularityFactory;
-import io.edurt.hqjl.base.granularity.StringGranularityEnum;
-import io.edurt.hqjl.filters.Filter;
-import lombok.*;
-import org.joda.time.format.DateTimeFormat;
-import sun.util.resources.TimeZoneNames;
 
-import java.util.List;
-import java.util.TimeZone;
+import lombok.*;
 
 /**
  * @program: incubator-hqjl
